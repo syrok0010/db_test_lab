@@ -7,5 +7,9 @@ setup(
     author='Vadim Syrov',
     author_email='vasyrov@edu.hse.ru',
     packages=find_packages(),
-    install_requires=[],
+    install_requires=[
+        'psycopg2',
+        'sqlalchemy',
+        'pandas'
+    ],
 )
