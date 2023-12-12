@@ -10,6 +10,7 @@ setup(
     install_requires=[
         'psycopg2',
         'sqlalchemy',
-        'pandas'
+        'pandas',
+        'duckdb'
     ],
 )
