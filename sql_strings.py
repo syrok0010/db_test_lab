@@ -19,5 +19,4 @@ query_sql = [
         GROUP BY 1, 2, 3
         ORDER BY 2, 4 desc;
     '''
-
 ]

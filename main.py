@@ -1,6 +1,8 @@
 from time import perf_counter_ns
 from library_tests import LibraryTests
-import psycopg2_tests, pandas_tests, pandas_inmemory_tests
+import psycopg2_tests, pandas_tests, pandas_inmemory_tests, sqlite_tests
+import warnings
+warnings.filterwarnings("ignore")
 
 tests_count = 5
 

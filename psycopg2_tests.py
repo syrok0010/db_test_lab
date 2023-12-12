@@ -6,6 +6,11 @@ from library_tests import LibraryTests
 
 class Psycopg2Tests(LibraryTests):
 
+    def __init__(self):
+        super().__init__()
+        self.conn = psycopg2.connect("dbname=postgres user=postgres")
+        self.cur = self.conn.cursor()
+
     def setup(self, path: str):
         pass
 
@@ -24,11 +29,6 @@ class Psycopg2Tests(LibraryTests):
     def query4(self):
         self.cur.execute(query_sql[3])
         return self.cur.fetchall()
-
-    def __init__(self):
-        super().__init__()
-        self.conn = psycopg2.connect("dbname=postgres user=postgres")
-        self.cur = self.conn.cursor()
 
     def __del__(self):
         self.cur.close()
