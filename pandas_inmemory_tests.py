@@ -47,3 +47,7 @@ class PandasInMemoryTests(LibraryTests):
             'year',
             'trip_distance'])
         return grouped_df.size().reset_index(name='counts').sort_values(['year', 'counts'], ascending=[True, False])
+
+    def __del__(self):
+        del self.taxi
+        del self.pd
