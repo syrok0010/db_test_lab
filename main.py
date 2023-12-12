@@ -1,6 +1,6 @@
 from time import perf_counter_ns
 from library_tests import LibraryTests
-import psycopg2_tests, pandas_tests, pandas_inmemory_tests, sqlite_tests
+import psycopg2_tests, pandas_tests, pandas_inmemory_tests, sqlite_tests, duckdb_tests
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -28,7 +28,7 @@ def test_library(tested_library):
         average_time = total_time / tests_count
         print(
             'Average time for ' +
-            str(libraryClass.__name__) + '.' + query.__name__ + ': ' +
+            str(tested_library.__class__.__name__) + '.' + query.__name__ + ': ' +
             str(average_time / ns_to_s_ratio)
         )
 
@@ -37,4 +37,3 @@ if __name__ == '__main__':
     for libraryClass in get_tested_libraries():
         library = libraryClass()
         test_library(library)
-    pass
