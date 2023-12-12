@@ -6,7 +6,7 @@ from library_tests import LibraryTests
 
 class Psycopg2Tests(LibraryTests):
 
-    def setup(self):
+    def setup(self, path: str):
         pass
 
     def query1(self):

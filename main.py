@@ -1,6 +1,6 @@
 from time import perf_counter_ns
 from library_tests import LibraryTests
-import psycopg2_tests, pandas_tests
+import psycopg2_tests, pandas_tests, pandas_inmemory_tests
 
 tests_count = 5
 
@@ -17,6 +17,7 @@ def get_tested_libraries():
 
 
 def test_library(tested_library):
+    tested_library.setup('/home/syrok/Downloads/nyc_yellow_tiny.csv')
     for query in tested_library.queries:
         total_time: int = 0
         ns_to_s_ratio = 1000000000

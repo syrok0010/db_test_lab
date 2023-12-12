@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class LibraryTests(ABC):
 
     @abstractmethod
-    def setup(self):
+    def setup(self, path: str):
         pass
 
     @abstractmethod

@@ -7,7 +7,7 @@ from library_tests import LibraryTests
 
 class PandasTests(LibraryTests):
 
-    def setup(self):
+    def setup(self, path: str):
         pass
 
     def query1(self):
