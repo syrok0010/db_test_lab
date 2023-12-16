@@ -2,7 +2,7 @@ from library_tests import LibraryTests
 from sqlalchemy.orm import Mapped, mapped_column, Session, DeclarativeBase
 from sqlalchemy import create_engine, func
 from sqlalchemy.types import TIMESTAMP
-from config_loader import table_name
+from config_loader import table_name, pg_password
 
 
 class Base(DeclarativeBase):
@@ -41,7 +41,7 @@ class SQLAlchemyTests(LibraryTests):
         self.session = None
 
     def setup(self, path: str):
-        self.engine = create_engine("postgresql+psycopg2://postgres:tick@localhost:5432/postgres")
+        self.engine = create_engine(f"postgresql+psycopg2://postgres:{pg_password}@localhost:5432/postgres")
         self.session = Session(self.engine)
         pass
 
