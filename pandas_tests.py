@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 
 from sql_strings import query_sql
 from library_tests import LibraryTests
+from config_loader import pg_password
 
 
 class PandasTests(LibraryTests):
@@ -24,7 +25,7 @@ class PandasTests(LibraryTests):
 
     def __init__(self):
         super().__init__()
-        self.alchemy_engine = create_engine('postgresql+psycopg2://postgres:@127.0.0.1:5432/postgres')
+        self.alchemy_engine = create_engine(f'postgresql+psycopg2://postgres:{pg_password}@127.0.0.1:5432/postgres')
         self.conn = self.alchemy_engine.connect()
 
     def release(self):

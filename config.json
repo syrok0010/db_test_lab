@@ -2,6 +2,7 @@
     "tests_count": 10,
     "dataset_path": "./tiny.csv",
     "table_name": "taxi_db",
+    "pg_password": "tick",
     "run": {
         "Psycopg2Tests": true,
         "SQLiteTests": true,

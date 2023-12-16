@@ -2,13 +2,14 @@ import psycopg2
 
 from sql_strings import query_sql
 from library_tests import LibraryTests
+from config_loader import pg_password
 
 
 class Psycopg2Tests(LibraryTests):
 
     def __init__(self):
         super().__init__()
-        self.conn = psycopg2.connect("dbname=postgres user=postgres")
+        self.conn = psycopg2.connect(f"dbname=postgres user=postgres password={pg_password}")
         self.cur = self.conn.cursor()
 
     def setup(self, path: str):
