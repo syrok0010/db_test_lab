@@ -1,8 +1,7 @@
 from library_tests import LibraryTests
 from sqlalchemy.orm import Mapped, mapped_column, Session, DeclarativeBase
-from sqlalchemy import create_engine, select, func
+from sqlalchemy import create_engine, func
 from sqlalchemy.types import TIMESTAMP
-import datetime
 
 
 class Base(DeclarativeBase):
