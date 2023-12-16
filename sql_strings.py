@@ -25,7 +25,7 @@ query_sql = [
 
 query_sql_sqlite = [
     f'SELECT "VendorID", count(*) FROM {table_name} GROUP BY 1;',
-    f'SELECT passenger_count, avg(total_amount) FROM {table_namee} GROUP BY 1;',
+    f'SELECT passenger_count, avg(total_amount) FROM {table_name} GROUP BY 1;',
     f'''
         SELECT
             passenger_count,
