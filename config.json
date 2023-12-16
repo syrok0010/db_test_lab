@@ -1,5 +1,7 @@
 {
     "tests_count": 10,
+    "dataset_path": "./tiny.csv",
+    "table_name": "taxi_db",
     "run": {
         "Psycopg2Tests": true,
         "SQLiteTests": true,
@@ -7,7 +9,5 @@
         "PandasInMemoryTests": true,
         "DuckDBTests": true,
         "SQLAlchemyTests": true
-    },
-    "dataset_path": "/home/syrok/Downloads/nyc_yellow_tiny.csv",
-    "table_name": "taxi_db"
+    }
 }
