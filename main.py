@@ -4,7 +4,6 @@ from sql_strings import import_csv_sql, create_table_sql, drop_table_sql
 import psycopg2_tests, pandas_tests, pandas_inmemory_tests, sqlite_tests, duckdb_tests, sql_alchemy_tests
 from psycopg2 import connect
 from config_loader import config, tests_count
-from json import loads
 from io import open
 import warnings
 
