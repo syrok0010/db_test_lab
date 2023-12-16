@@ -1,11 +1,12 @@
 from library_tests import LibraryTests
 from sql_strings import query_sql
 import duckdb
+from config_loader import table_name
 
 
 class DuckDBTests(LibraryTests):
     def setup(self, path: str):
-        duckdb.sql(f'''CREATE TABLE taxi AS FROM '{path}';''')
+        duckdb.sql(f'''CREATE TABLE {table_name} AS FROM '{path}';''')
 
     def query1(self):
         return duckdb.sql(query_sql[0])
