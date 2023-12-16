@@ -55,5 +55,6 @@ class SQLiteTests(LibraryTests):
         return self.cur.fetchall()
 
     def __del__(self):
-        self.cur.close()
-        self.conn.close()
+        if self.conn is not None:
+            self.cur.close()
+            self.conn.close()
