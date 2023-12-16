@@ -1,0 +1,11 @@
+{
+    "tests_count": 10,
+    "run": {
+        "Psycopg2Tests": true,
+        "SQLiteTests": true,
+        "PandasTests": true,
+        "PandasInMemoryTests": true,
+        "DuckDBTests": true,
+        "SqlAlchemyTests": false
+    }
+}

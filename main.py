@@ -1,10 +1,15 @@
 from time import perf_counter_ns
 from library_tests import LibraryTests
 import psycopg2_tests, pandas_tests, pandas_inmemory_tests, sqlite_tests, duckdb_tests
+from json import loads
+from io import open
 import warnings
+
 warnings.filterwarnings("ignore")
 
-tests_count = 5
+file = open('config.json')
+config = json.loads(file.read())
+tests_count = config['tests_count']
 
 
 def time(query_func) -> int:
@@ -15,7 +20,12 @@ def time(query_func) -> int:
 
 
 def get_tested_libraries():
-    return LibraryTests.__subclasses__()
+    all_libraries = LibraryTests.__subclasses__()
+    all_enabled_libraries = config['run']
+    for key, value in all_enabled_libraries.items():
+        if not value:
+            continue
+        yield next(x for x in all_libraries if x.__name__ == key)
 
 
 def test_library(tested_library):
