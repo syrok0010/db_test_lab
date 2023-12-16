@@ -27,5 +27,5 @@ class PandasTests(LibraryTests):
         self.alchemy_engine = create_engine('postgresql+psycopg2://postgres:@127.0.0.1:5432/postgres')
         self.conn = self.alchemy_engine.connect()
 
-    def __del__(self):
-        self.alchemy_engine.dispose(True)
+    def release(self):
+        self.alchemy_engine.dispose()

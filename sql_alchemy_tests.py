@@ -37,11 +37,12 @@ class TaxiRide(Base):
 class SQLAlchemyTests(LibraryTests):
     def __init__(self):
         super().__init__()
+        self.engine = None
         self.session = None
 
     def setup(self, path: str):
-        engine = create_engine("postgresql+psycopg2://postgres:tick@localhost:5432/postgres")
-        self.session = Session(engine)
+        self.engine = create_engine("postgresql+psycopg2://postgres:tick@localhost:5432/postgres")
+        self.session = Session(self.engine)
         pass
 
     def query1(self):
@@ -80,3 +81,7 @@ class SQLAlchemyTests(LibraryTests):
                 .group_by(TaxiRide.passenger_count, 'Year', TaxiRide.trip_distance)
                 .all()
                 )
+
+    def release(self):
+        self.session.close()
+        self.engine.dispose()

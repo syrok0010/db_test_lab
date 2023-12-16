@@ -30,6 +30,6 @@ class Psycopg2Tests(LibraryTests):
         self.cur.execute(query_sql[3])
         return self.cur.fetchall()
 
-    def __del__(self):
+    def release(self):
         self.cur.close()
         self.conn.close()

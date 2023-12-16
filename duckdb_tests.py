@@ -19,3 +19,6 @@ class DuckDBTests(LibraryTests):
 
     def query4(self):
         return duckdb.sql(query_sql[3])
+
+    def release(self):
+        duckdb.close()

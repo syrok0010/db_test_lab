@@ -23,5 +23,9 @@ class LibraryTests(ABC):
     def query4(self):
         pass
 
+    @abstractmethod
+    def release(self):
+        pass
+
     def __init__(self):
         self.queries = [self.query1, self.query2, self.query3, self.query4]

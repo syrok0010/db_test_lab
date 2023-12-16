@@ -36,6 +36,7 @@ def test_library(tested_library):
             total_time += time(query)
         average_time = total_time / tests_count
         print(str(average_time / ns_to_s_ratio))
+    tested_library.release()
 
 
 def init_postgres():
