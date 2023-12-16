@@ -6,6 +6,8 @@
         "PandasTests": true,
         "PandasInMemoryTests": true,
         "DuckDBTests": true,
-        "SqlAlchemyTests": false
-    }
+        "SQLAlchemyTests": true
+    },
+    "dataset_path": "/home/syrok/Downloads/nyc_yellow_tiny.csv",
+    "table_name": "taxi_db"
 }

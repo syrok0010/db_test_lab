@@ -1,4 +1,4 @@
-table_name = 'taxi_db'
+from config_loader import table_name
 
 query_sql = [
     f'SELECT "VendorID", count(*) FROM {table_name} GROUP BY 1;',

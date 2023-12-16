@@ -2,6 +2,7 @@ from library_tests import LibraryTests
 from sqlalchemy.orm import Mapped, mapped_column, Session, DeclarativeBase
 from sqlalchemy import create_engine, func
 from sqlalchemy.types import TIMESTAMP
+from config_loader import table_name
 
 
 class Base(DeclarativeBase):
@@ -9,7 +10,7 @@ class Base(DeclarativeBase):
 
 
 class TaxiRide(Base):
-    __tablename__ = 'taxi'
+    __tablename__ = table_name
 
     id: Mapped[int] = mapped_column(primary_key=True)
     VendorID: Mapped[int]

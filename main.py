@@ -1,15 +1,14 @@
 from time import perf_counter_ns
 from library_tests import LibraryTests
+from sql_strings import import_csv_sql, create_table_sql, drop_table_sql
 import psycopg2_tests, pandas_tests, pandas_inmemory_tests, sqlite_tests, duckdb_tests, sql_alchemy_tests
+from psycopg2 import connect
+from config_loader import config, tests_count
 from json import loads
 from io import open
 import warnings
 
 warnings.filterwarnings("ignore")
-
-file = open('config.json')
-config = loads(file.read())
-tests_count = config['tests_count']
 
 
 def time(query_func) -> int:
@@ -40,8 +39,32 @@ def test_library(tested_library):
         print(str(average_time / ns_to_s_ratio))
 
 
+def init_postgres():
+    connection = connect("dbname=postgres user=postgres")
+    cur = connection.cursor()
+    cur.execute(create_table_sql)
+    with open(config['dataset_path']) as csv_file:
+        cur.copy_expert(import_csv_sql, csv_file)
+    connection.commit()
+    cur.close()
+    connection.close()
+
+
+def drop_all():
+    connection = connect("dbname=postgres user=postgres")
+    cur = connection.cursor()
+    cur.execute(drop_table_sql)
+    connection.commit()
+    cur.close()
+    connection.close()
+
+
 if __name__ == '__main__':
-    for libraryClass in get_tested_libraries():
-        library = libraryClass()
-        test_library(library)
-        del library
+    try:
+        init_postgres()
+        for libraryClass in get_tested_libraries():
+            library = libraryClass()
+            test_library(library)
+            del library
+    finally:
+        drop_all()
