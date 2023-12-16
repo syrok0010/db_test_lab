@@ -13,7 +13,7 @@ class SQLiteTests(LibraryTests):
         self.conn = None
 
     def setup(self, path: str):
-        self.conn = sqlite3.connect("sample.db")
+        self.conn = sqlite3.connect(':memory:')
         read_csv(path).to_sql('taxi', self.conn, if_exists='replace', index=False)
         self.cur = self.conn.cursor()
         pass
