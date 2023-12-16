@@ -3,7 +3,7 @@ from abc import ABC
 from library_tests import LibraryTests
 import sqlite3
 from pandas import read_csv
-from sql_strings import query_sql
+from sql_strings import query_sql_sqlite as query_sql
 
 
 class SQLiteTests(LibraryTests):
@@ -27,31 +27,11 @@ class SQLiteTests(LibraryTests):
         return self.cur.fetchall()
 
     def query3(self):
-        self.cur.execute(
-            '''
-                SELECT
-                    passenger_count,
-                    strftime('%Y', tpep_pickup_datetime) AS "Year",
-                    count(*) 
-                FROM taxi 
-                GROUP BY 1, 2;
-            '''
-        )
+        self.cur.execute(query_sql[2])
         return self.cur.fetchall()
 
     def query4(self):
-        self.cur.execute(
-            '''
-                SELECT
-                    passenger_count,
-                    strftime('%Y', tpep_pickup_datetime) AS "Year",
-                    round(trip_distance),
-                    count(*)
-                FROM taxi
-                GROUP BY 1, 2, 3
-                ORDER BY 2, 4 desc;
-            '''
-        )
+        self.cur.execute(query_sql[3])
         return self.cur.fetchall()
 
     def __del__(self):
