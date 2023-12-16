@@ -4,6 +4,7 @@ from library_tests import LibraryTests
 import sqlite3
 from pandas import read_csv
 from sql_strings import query_sql_sqlite as query_sql
+from config_loader import table_name
 
 
 class SQLiteTests(LibraryTests):
@@ -14,7 +15,7 @@ class SQLiteTests(LibraryTests):
 
     def setup(self, path: str):
         self.conn = sqlite3.connect(':memory:')
-        read_csv(path).to_sql('taxi', self.conn, if_exists='replace', index=False)
+        read_csv(path).to_sql(table_name, self.conn, if_exists='replace', index=False)
         self.cur = self.conn.cursor()
         pass
 
